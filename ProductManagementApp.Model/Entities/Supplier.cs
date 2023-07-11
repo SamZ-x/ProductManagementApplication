@@ -7,7 +7,9 @@
 namespace ProductManagementApp.Model
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
+    [Table("Supplier", Schema = "Product")]
     public class Supplier : BaseEntity
     {
         [Required(ErrorMessage ="Supplier Id Required.")]

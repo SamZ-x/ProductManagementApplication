@@ -7,6 +7,7 @@
 namespace ProductManagementApp.Data
 {
     using Microsoft.EntityFrameworkCore;
+    using Newtonsoft.Json;
     using ProductManagementApp.Model;
 
     public class PMDataContext : DbContext
@@ -27,5 +28,30 @@ namespace ProductManagementApp.Data
         public DbSet<Supplier> Supplier { get; set; }
 
         public DbSet<User> User { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Add type conversion
+            modelBuilder.Entity<Product>().Property(e => e.IngredientList).HasConversion(
+                d => JsonConvert.SerializeObject(d),
+                d => JsonConvert.DeserializeObject<IReadOnlyDictionary<Guid, double>>(d));
+            modelBuilder.Entity<Order>().Property(e => e.ItemList).HasConversion(
+                d => JsonConvert.SerializeObject(d),
+                d => JsonConvert.DeserializeObject<IReadOnlyDictionary<Guid, int>>(d));
+            modelBuilder.Entity<IngredientTemplate>().Property(e => e.IngredientList).HasConversion(
+                d => JsonConvert.SerializeObject(d),
+                d => JsonConvert.DeserializeObject<IReadOnlyDictionary<Guid, double>>(d));
+
+            // Add table key
+            modelBuilder.Entity<User>().HasKey(x => new { x.Id });
+            modelBuilder.Entity<Supplier>().HasKey(x => new { x.Id });
+            modelBuilder.Entity<Category>().HasKey(x => new { x.Id });
+            modelBuilder.Entity<Product>().HasKey(x => new { x.Id });
+            modelBuilder.Entity<Order>().HasKey(x => new { x.Id });
+            modelBuilder.Entity<IngredientTemplate>().HasKey(x => new { x.Id });
+            modelBuilder.Entity<Ingredient>().HasKey(x => new { x.Id });
+
+        }
     }
 }

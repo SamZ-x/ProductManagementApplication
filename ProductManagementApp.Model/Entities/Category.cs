@@ -7,7 +7,9 @@
 namespace ProductManagementApp.Model
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
+    [Table("Category", Schema = "Product")]
     public class Category : BaseEntity
     {
         [Required(ErrorMessage = "Category Id Required.")]

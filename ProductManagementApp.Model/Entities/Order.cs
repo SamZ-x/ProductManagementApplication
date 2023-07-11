@@ -8,7 +8,10 @@ namespace ProductManagementApp.Model
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Runtime.Serialization;
 
+    [DataContract]
+    [Table("Order", Schema = "Product")]
     public class Order : BaseEntity
     {
         [Required(ErrorMessage = "Order Id Required.")]
