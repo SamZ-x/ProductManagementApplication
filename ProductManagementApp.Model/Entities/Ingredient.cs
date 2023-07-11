@@ -5,16 +5,20 @@
  ***************************/
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductManagementApp.Model
 {
+    [Table("Ingredient", Schema = "Food")]
     public class Ingredient : BaseEntity
     {
         [Required(ErrorMessage = "Ingredient Id Required.")]
         public Guid Id { get; set; }
 
+        [Required]
         public string? Code { get; set; }
 
+        [Required]
         public string? Name { get; set; }
 
         public string? Description { get; set; }
@@ -23,6 +27,7 @@ namespace ProductManagementApp.Model
 
         public Guid CurrentSupplier { get; set; }
 
+        [Required]
         public double PrimeCost { get; set; }
 
         public string? Unit { get; set; }

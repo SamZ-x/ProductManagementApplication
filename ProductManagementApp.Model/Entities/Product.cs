@@ -8,8 +8,11 @@ namespace ProductManagementApp.Model
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Runtime.Serialization;
 
     // #TOD: data annotations need to be review  
+    [DataContract]
+    [Table("Product", Schema = "Product")]
     public class Product : BaseEntity
     {
         [Required(ErrorMessage = "Product Id Required.")]
@@ -20,7 +23,6 @@ namespace ProductManagementApp.Model
 
         public int Category { get; set; }
 
-        [NotMapped] // #TODO: error
         public IReadOnlyDictionary<Guid, double>? IngredientList { get; set; }
 
         public double CostPrice { get; set; }
