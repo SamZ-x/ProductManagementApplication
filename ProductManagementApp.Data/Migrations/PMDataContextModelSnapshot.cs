@@ -30,10 +30,10 @@ namespace ProductManagementApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<Guid>("CreateBy")
+                    b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("CreateDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
@@ -44,10 +44,10 @@ namespace ProductManagementApp.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("UpdateBy")
+                    b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("UpdateDate")
+                    b.Property<DateTimeOffset>("UpdatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
@@ -68,10 +68,10 @@ namespace ProductManagementApp.Data.Migrations
                     b.Property<double>("CostPerUnit")
                         .HasColumnType("float");
 
-                    b.Property<Guid>("CreateBy")
+                    b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("CreateDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("CurrentSupplier")
@@ -96,10 +96,10 @@ namespace ProductManagementApp.Data.Migrations
                     b.Property<string>("Unit")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UpdateBy")
+                    b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("UpdateDate")
+                    b.Property<DateTimeOffset>("UpdatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("UsageUnit")
@@ -122,10 +122,10 @@ namespace ProductManagementApp.Data.Migrations
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("CreateBy")
+                    b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("CreateDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
@@ -143,10 +143,10 @@ namespace ProductManagementApp.Data.Migrations
                     b.Property<double>("TotalCost")
                         .HasColumnType("float");
 
-                    b.Property<Guid>("UpdateBy")
+                    b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("UpdateDate")
+                    b.Property<DateTimeOffset>("UpdatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
@@ -166,10 +166,10 @@ namespace ProductManagementApp.Data.Migrations
                     b.Property<Guid>("Client")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CreateBy")
+                    b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("CreateDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<double>("CreditAmount")
@@ -187,10 +187,10 @@ namespace ProductManagementApp.Data.Migrations
                     b.Property<DateTimeOffset>("StartingDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid>("UpdateBy")
+                    b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("UpdateDate")
+                    b.Property<DateTimeOffset>("UpdatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
@@ -210,10 +210,10 @@ namespace ProductManagementApp.Data.Migrations
                     b.Property<double>("CostPrice")
                         .HasColumnType("float");
 
-                    b.Property<Guid>("CreateBy")
+                    b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("CreateDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("IngredientList")
@@ -238,10 +238,10 @@ namespace ProductManagementApp.Data.Migrations
                     b.Property<string>("Unit")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UpdateBy")
+                    b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("UpdateDate")
+                    b.Property<DateTimeOffset>("UpdatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
@@ -263,10 +263,10 @@ namespace ProductManagementApp.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("CreateBy")
+                    b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("CreateDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Email")
@@ -289,10 +289,10 @@ namespace ProductManagementApp.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<Guid>("UpdateBy")
+                    b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("UpdateDate")
+                    b.Property<DateTimeOffset>("UpdatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
@@ -310,10 +310,10 @@ namespace ProductManagementApp.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<Guid>("CreateBy")
+                    b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("CreateDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("FirstName")
@@ -336,10 +336,10 @@ namespace ProductManagementApp.Data.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UpdateBy")
+                    b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTimeOffset>("UpdateDate")
+                    b.Property<DateTimeOffset>("UpdatedDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Username")
@@ -350,6 +350,22 @@ namespace ProductManagementApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User", "AppUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1b1c209b-1af9-49f3-9d8b-c57d65752215"),
+                            Address = "3948 123Ave, Edmonton, AB",
+                            CreatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FirstName = "Gavin",
+                            LastName = "Poole",
+                            Phone = "(878)577-3238",
+                            Role = 2,
+                            UpdatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            UpdatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Username = "GavinP"
+                        });
                 });
 #pragma warning restore 612, 618
         }
