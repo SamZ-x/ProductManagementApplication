@@ -8,6 +8,7 @@ namespace ProductManagementApp.Data
 {
     using Microsoft.EntityFrameworkCore;
     using Newtonsoft.Json;
+    using ProductManagementApp.Data.Configuration;
     using ProductManagementApp.Model;
 
     public class PMDataContext : DbContext
@@ -51,6 +52,10 @@ namespace ProductManagementApp.Data
             modelBuilder.Entity<Order>().HasKey(x => new { x.Id });
             modelBuilder.Entity<IngredientTemplate>().HasKey(x => new { x.Id });
             modelBuilder.Entity<Ingredient>().HasKey(x => new { x.Id });
+
+            // Apply model configuration
+            // Seeding data.
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
 
         }
     }

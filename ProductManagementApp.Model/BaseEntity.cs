@@ -11,15 +11,15 @@ namespace ProductManagementApp.Model
     public class BaseEntity
     {
         [Required]
-        public Guid CreateBy { get; set; }
+        public Guid CreatedBy { get; set; }
 
         // #TODO: use default value or set to 'required' 
-        public DateTimeOffset CreateDate { get; set; } = DateTimeOffset.UtcNow;
+        public DateTimeOffset CreatedDate { get; set; } = DateTimeOffset.UtcNow;
 
         [Required]
-        public Guid UpdateBy { get; set; }
+        public Guid UpdatedBy { get; set; }
 
         // #TODO: use default value or set to 'required' 
-        public DateTimeOffset UpdateDate { get; set; } = DateTimeOffset.UtcNow;
+        public DateTimeOffset UpdatedDate { get; set; } = DateTimeOffset.UtcNow;
     }
 }
