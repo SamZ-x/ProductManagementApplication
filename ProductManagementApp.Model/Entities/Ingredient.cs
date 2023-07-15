@@ -23,18 +23,18 @@ namespace ProductManagementApp.Model
 
         public string? Description { get; set; }
 
-        public string? brand { get; set; }
+        public string? Brand { get; set; }
 
-        public Guid CurrentSupplier { get; set; }
+        public Guid? CurrentSupplier { get; set; }
 
         [Required]
         public double PrimeCost { get; set; }
 
         public string? Unit { get; set; }
 
-        public string? UsageUnit { get; set; }
+        public double Quantity { get; set; }
 
-        public double CostPerUnit { get; set; }
+        public string? UsageUnit { get; set; }
 
         public double HistoryHighPrice { get; set; }
 

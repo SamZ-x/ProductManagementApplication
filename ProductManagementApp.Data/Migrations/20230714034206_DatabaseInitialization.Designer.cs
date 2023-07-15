@@ -12,8 +12,8 @@ using ProductManagementApp.Data;
 namespace ProductManagementApp.Data.Migrations
 {
     [DbContext(typeof(PMDataContext))]
-    [Migration("20230712042123_DbContextConfiguration")]
-    partial class DbContextConfiguration
+    [Migration("20230714034206_DatabaseInitialization")]
+    partial class DatabaseInitialization
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -252,6 +252,74 @@ namespace ProductManagementApp.Data.Migrations
                     b.ToTable("Product", "Product");
                 });
 
+            modelBuilder.Entity("ProductManagementApp.Model.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("UpdatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Role", "AppUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "SysAdmin",
+                            UpdatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            UpdatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Merchant",
+                            UpdatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            UpdatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Supplier",
+                            UpdatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            UpdatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Name = "Customer",
+                            UpdatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            UpdatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        });
+                });
+
             modelBuilder.Entity("ProductManagementApp.Model.Supplier", b =>
                 {
                     b.Property<Guid>("Id")
@@ -319,6 +387,9 @@ namespace ProductManagementApp.Data.Migrations
                     b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -347,8 +418,8 @@ namespace ProductManagementApp.Data.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
 
@@ -357,17 +428,83 @@ namespace ProductManagementApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1b1c209b-1af9-49f3-9d8b-c57d65752215"),
-                            Address = "3948 123Ave, Edmonton, AB",
+                            Id = new Guid("da4153e9-c1b1-44e3-a180-78e6c4dcf276"),
+                            Address = "P.O. Box 869, 6283 Lorem Av.",
                             CreatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
                             CreatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "libero.proin@yahoo.net",
                             FirstName = "Gavin",
                             LastName = "Poole",
-                            Phone = "(878)577-3238",
+                            MiddleName = "",
+                            Phone = "(878) 577-3238",
                             Role = 2,
                             UpdatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
                             UpdatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Username = "GavinP"
+                            Username = "GPuser878"
+                        },
+                        new
+                        {
+                            Id = new Guid("9b32a9ed-dea3-4091-9e47-94bfa929bf49"),
+                            Address = "891-3948 Dapibus Rd.",
+                            CreatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "mauris@google.org",
+                            FirstName = "Ronan",
+                            LastName = "Carr",
+                            MiddleName = "",
+                            Phone = "(884) 803-7319",
+                            Role = 2,
+                            UpdatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            UpdatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Username = "RCuser884"
+                        },
+                        new
+                        {
+                            Id = new Guid("4b109af5-f84a-45f9-b5da-15b66e59a8df"),
+                            Address = "568-6361 Hendrerit Av.",
+                            CreatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "sed@google.edu",
+                            FirstName = "Kitra",
+                            LastName = "Winters",
+                            MiddleName = "",
+                            Phone = "(206) 937-9022",
+                            Role = 2,
+                            UpdatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            UpdatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Username = "KWuser206"
+                        },
+                        new
+                        {
+                            Id = new Guid("e8718d0d-d31a-48c3-903b-162d1c7a2d12"),
+                            Address = "Ap #679-5023 Adipiscing Road",
+                            CreatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "dictum.cursus@hotmail.com",
+                            FirstName = "Unity",
+                            LastName = "House",
+                            MiddleName = "",
+                            Phone = "(332) 471-1352",
+                            Role = 2,
+                            UpdatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            UpdatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Username = "UHuser206"
+                        },
+                        new
+                        {
+                            Id = new Guid("c5e099e8-bebe-4249-a7e4-56b55d553d9d"),
+                            Address = "Ap #679-5023 Adipiscing Road",
+                            CreatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            CreatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "sam.zhu992@yahoo.com",
+                            FirstName = "Sam",
+                            LastName = "Zhu",
+                            MiddleName = "",
+                            Phone = "(992) 471-1352",
+                            Role = 1,
+                            UpdatedBy = new Guid("4af36f59-a750-4d33-ab0a-c29e59defe11"),
+                            UpdatedDate = new DateTimeOffset(new DateTime(2023, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Username = "SZuser992"
                         });
                 });
 #pragma warning restore 612, 618
