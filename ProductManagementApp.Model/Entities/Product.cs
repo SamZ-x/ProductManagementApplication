@@ -37,6 +37,8 @@ namespace ProductManagementApp.Model
 
         public bool OutOfStock { get; set; }
 
+        public int Stock { get; set; }
+
         // #TODO: enable when start the implement the feature
         // public Blob Image { get; set; }
     }

@@ -16,7 +16,8 @@ namespace ProductManagementApp.Model
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(30)]
+        //[StringLength(30, MinimumLength = 8, ErrorMessage = "Username must be between 8 and 30 characters in length")]
         public string? Username { get; set; }
 
         [Required]
@@ -35,6 +36,9 @@ namespace ProductManagementApp.Model
 
         [DataType(DataType.PhoneNumber)]
         public string? Phone { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        public string? Email { get; set;}
 
         [MaxLength(1000)]
         public string? Address { get; set; }

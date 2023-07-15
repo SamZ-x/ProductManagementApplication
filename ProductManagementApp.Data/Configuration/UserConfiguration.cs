@@ -4,47 +4,68 @@
  * Author: Sam
  ***************************/
 
-namespace ProductManagementApp.Data.Configuration
+namespace ProductManagementApp.Data
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using ProductManagementApp.Model;
+    using System.IO;
+    using System.Reflection;
 
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {
+        //seeding data in the configuration
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            //seeding data in the configuration
-            // builder.HasData();
-            
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            Stream? stream = assembly.GetManifestResourceStream("ProductManagementApp.Data.Json.User.json");
+
             // Base info
             Guid creator = Guid.Parse("4af36f59-a750-4d33-ab0a-c29e59defe11");
             DateTimeOffset baseDate = new DateTimeOffset(2023, 7, 11, 0, 0, 0, new TimeSpan(0, 0, 0));
 
-            //var serializer = new JsonSerializer();
-            //List<User> users = new List<User>();
-            //using (StreamReader streamReader = File.OpenText(@"..\Json\User.json"))
-            //using (var textRead = new JsonTextReader(streamReader)) 
-            //{
-            //   users = serializer.Deserialize<List<User>>(textRead);
-            //}
+            // store user object
+            List<User> users = new List<User>();
 
-            builder.HasData(
-                new User { Id = Guid.Parse("1b1c209b-1af9-49f3-9d8b-c57d65752215"),
-                            Username = "GavinP",
-                            FirstName = "Gavin",
-                            MiddleName = null,
-                            LastName = "Poole",
-                            Role = 2,
-                            Phone = "(878)577-3238",
-                            Address = "3948 123Ave, Edmonton, AB",
-                            CreatedBy = creator,
-                            CreatedDate = baseDate,
-                            UpdatedBy = creator,
-                            UpdatedDate = baseDate
-                         }
-                );
+            using (StreamReader file = new StreamReader(stream))
+            //using (StreamReader file = File.OpenText(pathTmp))
+            {
+                using (JsonTextReader textReader = new JsonTextReader(file))
+                {
+                    while (textReader.Read())
+                    {
+                        if (textReader.TokenType == JsonToken.StartObject)
+                        {
+                            JObject user = (JObject)JToken.ReadFrom(textReader);
+                            //JObject users = JObject.Load(textRead);
+
+                            User newUser = new User
+                            {
+                                Id = Guid.Parse((string)user["Id"]),
+                                Username = (string)user["Username"],
+                                FirstName = (string)user["FirstName"],
+                                MiddleName = (string)user["MiddleName"],
+                                LastName = (string)user["LastName"],
+                                Role = (int)user["Role"],
+                                Phone = (string)user["Phone"],
+                                Email = (string)user["Email"],
+                                Address = (string)user["Address"],
+                                CreatedBy = creator,
+                                CreatedDate = baseDate,
+                                UpdatedBy = creator,
+                                UpdatedDate = baseDate
+                            };
+
+                            users.Add(newUser);
+                        }
+                    }
+                }
+            }
+
+            builder.HasData(users);
+
         }
     }
 }
