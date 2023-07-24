@@ -29,7 +29,9 @@
  */
 
 using ProductManagementAPP.API;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,8 +48,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Authentication
+//builder.Services.AddIdentityServices(builder.Configuration);
+
 // #TODO: get knowledge to properly configure CORS.
-//Enable cross-origin HTTP requests
+// Enable cross-origin HTTP requests
 builder.Services.AddCors();
 
 #endregion
@@ -58,14 +63,15 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-//if (app.Environment.IsDevelopment())
-//{
-//    
-//}
+//if (app.Environment.IsDevelopment()) {}
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+// add authentication
+// app.UseAuthentication();
 
 // User identity verification
 app.UseAuthorization();

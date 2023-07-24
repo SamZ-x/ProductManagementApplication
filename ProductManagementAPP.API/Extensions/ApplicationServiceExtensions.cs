@@ -23,7 +23,6 @@ namespace ProductManagementAPP.API
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
-
             return services;
         }
     }

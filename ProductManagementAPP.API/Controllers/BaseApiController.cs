@@ -3,7 +3,7 @@
  *  - path setting, and enable ApiController validation [ApiController]
  */
 
-namespace ProductManagementAPP.API.Controllers
+namespace ProductManagementApp.API.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +11,6 @@ namespace ProductManagementAPP.API.Controllers
     [Route("api/[controller]")]
     public class BaseApiController : ControllerBase
     {
-        List<string> test = new List<string>();
+
     }
 }

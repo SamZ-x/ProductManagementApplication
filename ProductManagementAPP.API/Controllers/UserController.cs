@@ -4,8 +4,9 @@
  * Author: Sam
  */
 
-namespace ProductManagementAPP.API.Controllers
+namespace ProductManagementApp.API.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using ProductManagementApp.Data;
@@ -14,12 +15,10 @@ namespace ProductManagementAPP.API.Controllers
     public class UserController : BaseApiController
     {
         private readonly PMDataContext _pmDataContext;
-        private readonly ILogger<UserController> _logger;
 
-        public UserController(PMDataContext pMDataContext, ILogger<UserController> logger)
+        public UserController(PMDataContext pMDataContext)
         {
             _pmDataContext = pMDataContext;
-            _logger = logger;
         }
 
         /// <summary>
