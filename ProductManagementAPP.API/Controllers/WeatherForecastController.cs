@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ProductManagementAPP.API.Controllers
+namespace ProductManagementApp.API.Controllers
 {
 
     public class WeatherForecastController : BaseApiController

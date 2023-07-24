@@ -45,6 +45,7 @@ namespace ProductManagementApp.Data
                             {
                                 Id = Guid.Parse((string)user["Id"]),
                                 Username = (string)user["Username"],
+                                Password = "abcde12345",
                                 FirstName = (string)user["FirstName"],
                                 MiddleName = (string)user["MiddleName"],
                                 LastName = (string)user["LastName"],

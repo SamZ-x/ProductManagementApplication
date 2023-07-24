@@ -21,6 +21,10 @@ namespace ProductManagementApp.Model
         public string? Username { get; set; }
 
         [Required]
+        [StringLength(40,MinimumLength = 10)]
+        public string? Password { get; set; }
+
+        [Required]
         [MaxLength(100)]
         public string? FirstName { get; set; }
 
