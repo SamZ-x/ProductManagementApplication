@@ -8,6 +8,7 @@ namespace ProductManagementApp.Model
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Runtime.Serialization;
 
     [Table("User", Schema = "AppUser")]
     public class User : BaseEntity
@@ -20,9 +21,13 @@ namespace ProductManagementApp.Model
         //[StringLength(30, MinimumLength = 8, ErrorMessage = "Username must be between 8 and 30 characters in length")]
         public string? Username { get; set; }
 
-        [Required]
-        [StringLength(40,MinimumLength = 10)]
-        public string? Password { get; set; }
+        //[Required]
+        [DataMember]
+        public byte[]? PasswordHash { get; set; }
+
+        //[Required]
+        [DataMember]
+        public byte[]? PasswordSalt { get; set; }
 
         [Required]
         [MaxLength(100)]

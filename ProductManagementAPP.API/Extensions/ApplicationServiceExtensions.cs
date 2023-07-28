@@ -7,7 +7,10 @@
  */
 
 using Microsoft.EntityFrameworkCore;
+using ProductManagementApp.API.Services.Implementation;
+using ProductManagementApp.API;
 using ProductManagementApp.Data;
+using ProductManagementApp.DataUtility;
 
 namespace ProductManagementAPP.API
 {
@@ -23,6 +26,10 @@ namespace ProductManagementAPP.API
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            // DI: add services.
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddAutoMapper(typeof(MappingConfiguration));
             return services;
         }
     }
