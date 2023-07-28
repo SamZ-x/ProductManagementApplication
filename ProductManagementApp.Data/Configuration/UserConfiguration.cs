@@ -13,6 +13,8 @@ namespace ProductManagementApp.Data
     using ProductManagementApp.Model;
     using System.IO;
     using System.Reflection;
+    using System.Security.Cryptography;
+    using System.Text;
 
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {
@@ -29,6 +31,12 @@ namespace ProductManagementApp.Data
             // store user object
             List<User> users = new List<User>();
 
+            // set test password
+            string Password = "abcde12345";
+            using var hmac = new HMACSHA512();
+            var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(Password));
+            var key = hmac.Key;
+
             using (StreamReader file = new StreamReader(stream))
             //using (StreamReader file = File.OpenText(pathTmp))
             {
@@ -41,11 +49,14 @@ namespace ProductManagementApp.Data
                             JObject user = (JObject)JToken.ReadFrom(textReader);
                             //JObject users = JObject.Load(textRead);
 
+
+
                             User newUser = new User
                             {
                                 Id = Guid.Parse((string)user["Id"]),
                                 Username = (string)user["Username"],
-                                Password = "abcde12345",
+                                PasswordHash = hash,
+                                PasswordSalt = key,
                                 FirstName = (string)user["FirstName"],
                                 MiddleName = (string)user["MiddleName"],
                                 LastName = (string)user["LastName"],

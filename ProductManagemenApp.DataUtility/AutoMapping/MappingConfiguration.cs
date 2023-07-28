@@ -15,6 +15,7 @@ namespace ProductManagementApp.DataUtility
             MapperConfiguration configuration = new MapperConfiguration(config =>
             {
                 config.AddProfile<RegisterProfile>();
+                config.AddProfile<UserProfile>();
             });
 
             return configuration;
