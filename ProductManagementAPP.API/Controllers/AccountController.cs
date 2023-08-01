@@ -45,7 +45,7 @@ namespace ProductManagementApp.API.Controllers
             User newUser = _Mapper.Map<User>(registerInfo);
             // manually set
             newUser.Id = newUserId;
-            newUser.Role = 1;
+            newUser.Role = 2;
 
             _unitOfWork.UserRepository.AddSync(newUser);
             bool result = await _unitOfWork.UserRepository.saveAllAsync();

@@ -36,7 +36,7 @@ namespace ProductManagementAPP.API
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminAccess", policy => policy
-                .RequireClaim("Role", "Admin"));
+                .RequireClaim("Role", "1"));
             });
 
             return services;
