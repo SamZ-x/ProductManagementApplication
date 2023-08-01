@@ -6,19 +6,23 @@
 
 namespace ProductManagementApp.API.Controllers
 {
+    using AutoMapper;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using ProductManagementApp.Data;
     using ProductManagementApp.Model;
 
+    [Authorize]
     public class UserController : BaseApiController
     {
-        private readonly PMDataContext _pmDataContext;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public UserController(PMDataContext pMDataContext)
+        public UserController(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _pmDataContext = pMDataContext;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -26,9 +30,28 @@ namespace ProductManagementApp.API.Controllers
         /// </summary>
         /// <returns>List of Users</returns>
         [HttpGet, Route("all")]
-        public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
+        [Authorize(policy: "AdminAccess")]
+        public async Task<IEnumerable<User>> GetAllUsers()
         {
-            return await _pmDataContext.User.ToListAsync();
+            return await _unitOfWork.UserRepository.GetAllAsync();
+        }
+
+
+        [HttpGet, Route("Id")]
+        public async Task<ActionResult<User>> GetUserById(string id)
+        {
+            Guid userId = Guid.Parse(id);
+
+            var user = await _unitOfWork.UserRepository.GetUserByIdAsync(userId);
+
+            if (user!= null)
+            {
+                return Ok(user);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

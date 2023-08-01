@@ -49,7 +49,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Authentication
-//builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 // #TODO: get knowledge to properly configure CORS.
 // Enable cross-origin HTTP requests
@@ -70,8 +70,8 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
-// add authentication
-// app.UseAuthentication();
+
+app.UseAuthentication();
 
 // User identity verification
 app.UseAuthorization();

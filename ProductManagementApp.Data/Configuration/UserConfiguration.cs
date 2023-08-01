@@ -33,9 +33,15 @@ namespace ProductManagementApp.Data
 
             // set test password
             string Password = "abcde12345";
-            using var hmac = new HMACSHA512();
+            // create salt and hash
+            byte[] rndSalt = new byte[64];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(rndSalt);
+            }
+            using var hmac = new HMACSHA512(rndSalt);
             var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(Password));
-            var key = hmac.Key;
+            var key = rndSalt;
 
             using (StreamReader file = new StreamReader(stream))
             //using (StreamReader file = File.OpenText(pathTmp))
@@ -48,8 +54,6 @@ namespace ProductManagementApp.Data
                         {
                             JObject user = (JObject)JToken.ReadFrom(textReader);
                             //JObject users = JObject.Load(textRead);
-
-
 
                             User newUser = new User
                             {

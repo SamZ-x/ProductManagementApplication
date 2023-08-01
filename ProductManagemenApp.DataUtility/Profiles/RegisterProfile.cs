@@ -48,18 +48,22 @@ namespace ProductManagementApp.DataUtility
         {
             // #TODO: consider using "Rfc2898DeriveBytes" for password security.
 
-
-
+            // Create random salt for user
+            byte[] rndSalt = new byte[64];
+            using(var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(rndSalt);
+            }
+      
             // Generate hash and salt based on the password
-            using var hmac = new HMACSHA512();
+            using var hmac = new HMACSHA512(rndSalt);
             byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.password));
-            byte[] salt = hmac.Key;
 
             return new Dictionary<string, byte[]>()
             {
                 // could use constants for keys.
                 {"HASH", hash },
-                {"SALT", salt}
+                {"SALT", rndSalt}
             };
         }
     }
