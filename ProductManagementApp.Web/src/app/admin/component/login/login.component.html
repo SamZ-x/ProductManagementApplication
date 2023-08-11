@@ -1,0 +1,17 @@
+<div >
+  <app-nav></app-nav>
+  <div class="body">
+    <div class="app-icon-container">
+      <img src="../../../../assets/icon/Primary-App-Icon-L.svg" alt="appIcon">
+    </div>
+    <form #loginForm="ngForm" class="login-form" (ngSubmit)="login()" autocomplete="off">
+      <input [(ngModel)]='model.userId' name="userId" class="input-box" type="text" placeholder="ID">
+      <input [(ngModel)]='model.password' name="password" class="input-box" type="password" placeholder="PASSWORD">
+      <button class="login-button" type="submit">Login</button>
+    </form>
+  </div>
+  <div class="footer">
+    © 2023 Copyright: 
+    <a href="#">Free Land</a>
+  </div>
+</div>
