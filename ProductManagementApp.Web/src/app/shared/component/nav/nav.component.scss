@@ -1,0 +1,30 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+
+
+.register-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.register-button {
+    padding: 4px 8px;
+    background-color: #F36C6C;
+    border-radius: 4px;
+
+    color: white;
+    font-family: Roboto !important;
+    font-size: 20px;
+    height: 24px;
+    
+    &:hover {
+        cursor: pointer;
+        background-color: #f3a3a3;
+    }
+}
+

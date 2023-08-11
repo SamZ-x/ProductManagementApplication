@@ -29,6 +29,10 @@ namespace ProductManagementApp.DataUtility
                 .ForMember(dest => dest.Phone, act => act.MapFrom(src => src.phone))
                 .ForMember(dest => dest.Email, act => act.MapFrom(src => src.email))
                 .ForMember(dest => dest.Address, act => act.MapFrom(src => src.address))
+                .ForMember(dest => dest.CreatedBy, act => act.Ignore())
+                .ForMember(dest => dest.CreatedDate, act => act.Ignore())
+                .ForMember(dest => dest.UpdatedBy, act => act.Ignore())
+                .ForMember(dest => dest.UpdatedDate, act => act.Ignore())
                 .AfterMap((registerDto, user) =>
                 {
                     // set to Unique Id and basic role.

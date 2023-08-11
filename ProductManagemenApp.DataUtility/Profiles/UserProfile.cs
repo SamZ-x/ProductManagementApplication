@@ -24,6 +24,10 @@ namespace ProductManagementApp.DataUtility
                 .ForMember(dest => dest.Phone, act => act.MapFrom(src => src.Phone))
                 .ForMember(dest => dest.Email, act => act.MapFrom(src => src.Email))
                 .ForMember(dest => dest.Address, act => act.MapFrom(src => src.Address))
+                .ForMember(dest => dest.CreatedBy, act => act.MapFrom(src => src.CreatedBy))
+                .ForMember(dest => dest.CreatedDate, act => act.MapFrom(src => src.CreatedDate))
+                .ForMember(dest => dest.UpdatedBy, act => act.MapFrom(src => src.UpdatedBy))
+                .ForMember(dest => dest.UpdatedDate, act => act.MapFrom(src => src.UpdatedDate))
                 .ReverseMap();
         }
     }

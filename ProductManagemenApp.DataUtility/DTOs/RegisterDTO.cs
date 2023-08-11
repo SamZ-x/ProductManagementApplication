@@ -6,7 +6,7 @@
 
 namespace ProductManagementApp.DataUtility
 {
-    public class RegisterDTO
+    public class RegisterDTO : BaseDTO
     {
         public string? username {  get; set; }
 

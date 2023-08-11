@@ -11,9 +11,10 @@ namespace ProductManagementApp.API.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using ProductManagementApp.Data;
+    using ProductManagementApp.DataUtility;
     using ProductManagementApp.Model;
 
-    [Authorize]
+    [Authorize(policy: "AdminAccess")]
     public class UserController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -30,28 +31,54 @@ namespace ProductManagementApp.API.Controllers
         /// </summary>
         /// <returns>List of Users</returns>
         [HttpGet, Route("all")]
-        [Authorize(policy: "AdminAccess")]
-        public async Task<IEnumerable<User>> GetAllUsers()
+        public async Task<IActionResult> GetAllUsers()
         {
-            return await _unitOfWork.UserRepository.GetAllAsync();
+            try
+            {
+                List<User> users = (List<User>)await _unitOfWork.UserRepository.GetAllAsync();
+
+                List<UserDTO> result = new List<UserDTO>();
+
+                foreach (var user in users)
+                {
+                    result.Add(_mapper.Map<UserDTO>(user));
+                }
+
+                return StatusCode(StatusCodes.Status200OK, result);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Server Error");
+            }
         }
 
 
         [HttpGet, Route("Id")]
         public async Task<ActionResult<User>> GetUserById(string id)
         {
-            Guid userId = Guid.Parse(id);
-
-            var user = await _unitOfWork.UserRepository.GetUserByIdAsync(userId);
-
-            if (user!= null)
+            try
             {
-                return Ok(user);
+                Guid userId = Guid.Parse(id);
+
+                var user = await _unitOfWork.UserRepository.GetUserByIdAsync(userId);
+
+                if (user != null)
+                {
+                    UserDTO result = _mapper.Map<UserDTO>(user);
+                    return StatusCode(StatusCodes.Status200OK, result);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status204NoContent, "No user found.");
+                }
             }
-            else
+            catch
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Server Error");
             }
+
+
+            
         }
     }
 }
